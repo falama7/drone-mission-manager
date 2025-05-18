@@ -4,7 +4,7 @@
 
 ## 📋 Description
 
-Drone Mission Manager est une application web Flask conçue pour gérer efficacement les missions de drones. Elle permet de planifier, suivre et gérer les missions de drones de manière centralisée.
+Drone Mission Manager est une application web conçue pour gérer efficacement les missions de drones. Elle permet de planifier, suivre et gérer les missions de drones de manière centralisée.
 
 ## 🚀 Fonctionnalités
 
