@@ -1,0 +1,17 @@
+# Dépendances principales
+Flask==2.3.3
+Werkzeug==2.3.7
+SQLAlchemy==2.0.20
+Flask-SQLAlchemy==3.1.1
+Flask-Migrate==4.0.5
+psycopg2-binary==2.9.9
+gunicorn==21.2.0
+
+# Utilitaires et extensions
+python-dotenv==1.0.0
+email-validator==2.0.0
+Pillow==10.0.1
+pytest==7.4.2
+pytest-flask==1.2.0
+requests==2.31.0
+Jinja2==3.1.2

@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+
+{% block title %}Accueil - Gestionnaire de Missions Drone{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col">
+        <div class="card bg-primary text-white">
+            <div class="card-body">
+                <h1 class="card-title">
+                    <i class="fas fa-drone-alt"></i> Gestionnaire de Missions Drone Trinity F90+
+                </h1>
+                <p class="card-text lead">
+                    Système de gestion et stockage des fichiers issus des missions de vol du drone Trinity F90+
+                </p>
+                <a href="{{ url_for('missions.create_mission') }}" class="btn btn-light">
+                    <i class="fas fa-plus"></i> Nouvelle Mission
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mb-5">
+    <div class="col-md-4">
+        <div class="card mb-4 h-100">
+            <div class="card-body text-center">
+                <i class="fas fa-upload fa-3x text-primary mb-3"></i>
+                <h3 class="card-title">Téléversement</h3>
+                <p class="card-text">Téléversez tous les fichiers liés à vos missions de vol (images, logs, données de géoréférencement, etc.)</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card mb-4 h-100">
+            <div class="card-body text-center">
+                <i class="fas fa-folder-tree fa-3x text-primary mb-3"></i>
+                <h3 class="card-title">Organisation</h3>
+                <p class="card-text">Les fichiers sont automatiquement organisés dans une structure logique par mission et par type.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card mb-4 h-100">
+            <div class="card-body text-center">
+                <i class="fas fa-download fa-3x text-primary mb-3"></i>
+                <h3 class="card-title">Téléchargement</h3>
+                <p class="card-text">Téléchargez facilement les fichiers par catégorie ou toute la mission en un seul clic.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h2 class="mb-4">Missions récentes</h2>
+
+{% if missions %}
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for mission in missions[:6] %}
+            <div class="col">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ mission.name }}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">
+                            {% if mission.flight_date %}
+                                Vol le {{ mission.flight_date.strftime('%d/%m/%Y') }}
+                            {% else %}
+                                Date inconnue
+                            {% endif %}
+                        </h6>
+                        <p class="card-text">
+                            {% if mission.description %}
+                                {{ mission.description|truncate(100) }}
+                            {% else %}
+                                <span class="text-muted">Pas de description</span>
+                            {% endif %}
+                        </p>
+                        <div class="d-flex justify-content-between">
+                            <span class="badge bg-info">{{ mission.file_count }} fichiers</span>
+                            <span class="badge bg-success">{{ mission.image_count }} images</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="{{ url_for('missions.mission_detail', mission_id=mission.id) }}" class="btn btn-sm btn-primary">
+                            <i class="fas fa-eye"></i> Détails
+                        </a>
+                        <a href="{{ url_for('missions.upload_files', mission_id=mission.id) }}" class="btn btn-sm btn-success">
+                            <i class="fas fa-upload"></i> Téléverser
+                        </a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    
+    {% if missions|length > 6 %}
+        <div class="text-center mt-4">
+            <a href="{{ url_for('missions.list_missions') }}" class="btn btn-outline-primary">
+                Voir toutes les missions ({{ missions|length }})
+            </a>
+        </div>
+    {% endif %}
+{% else %}
+    <div class="alert alert-info">
+        <i class="fas fa-info-circle"></i> Aucune mission n'a été créée. 
+        <a href="{{ url_for('missions.create_mission') }}" class="alert-link">Créer une nouvelle mission</a>
+    </div>
+{% endif %}
+{% endblock %}

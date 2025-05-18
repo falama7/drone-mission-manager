@@ -1,0 +1,149 @@
+/* Styles personnalisés pour le gestionnaire de missions drone */
+
+/* Styles généraux */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+}
+
+/* En-tête et navigation */
+.navbar-brand {
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+/* Cartes */
+.card {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    margin-bottom: 1.5rem;
+}
+
+.card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    font-weight: 600;
+}
+
+/* Tableaux */
+.table th {
+    border-top: none;
+    font-weight: 600;
+}
+
+/* Boutons et badges */
+.btn-group {
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.badge {
+    font-weight: 500;
+    padding: 0.5em 0.8em;
+}
+
+/* Styles pour les types de fichiers */
+.file-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 0.5rem;
+    text-align: center;
+}
+
+/* Animations */
+.alert {
+    animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .table-responsive {
+        margin-bottom: 1rem;
+    }
+    
+    .btn-group {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .btn-group .btn {
+        border-radius: 0.25rem !important;
+        margin-bottom: 0.25rem;
+    }
+}
+
+/* Styles pour les stats sur la page d'accueil */
+.stat-card {
+    border-radius: 10px;
+    border: none;
+    padding: 1.2rem;
+    margin-bottom: 1.5rem;
+    transition: transform 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+}
+
+.stat-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.stat-value {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: #6c757d;
+}
+
+/* Styles pour les tabs */
+.nav-tabs .nav-link {
+    color: #495057;
+    border: 1px solid transparent;
+}
+
+.nav-tabs .nav-link.active {
+    color: #007bff;
+    font-weight: 600;
+}
+
+/* Styles pour les formulaires */
+.form-label {
+    font-weight: 500;
+}
+
+/* Styles pour la page de détail */
+.mission-detail-header {
+    background-color: #f1f8ff;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.mission-detail-title {
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+}
+
+.mission-detail-title i {
+    margin-right: 0.75rem;
+    color: #007bff;
+}
+
+/* Footer */
+footer {
+    margin-top: 2rem;
+    border-top: 1px solid #e9ecef;
+}

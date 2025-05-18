@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  # Service Flask pour le développement
+  web:
+    build: .
+    restart: always
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./:/app
+      - ./missions:/app/missions
+    environment:
+      - FLASK_APP=run.py
+      - FLASK_ENV=development
+      - FLASK_CONFIG=docker-dev
+      - SECRET_KEY=development-key-change-in-production
+      - UPLOAD_FOLDER=/app/missions
+      # Décommenter pour utiliser PostgreSQL
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/drone_missions
+    depends_on:
+      - db
+    command: flask run --host=0.0.0.0
+
+  # Service PostgreSQL (optionnel - utiliser SQLite par défaut)
+  db:
+    image: postgres:14-alpine
+    restart: always
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=drone_missions
+
+volumes:
+  postgres_data:
